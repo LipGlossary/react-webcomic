@@ -5,7 +5,7 @@
   "description": "A webcomic viewer frontend in React",
   "keywords": [],
   "scripts": {
-    "postinstall": "[[ $NODE_ENV = 'production' ]] && $(npm bin)/gulp || true",
+    "postinstall": "$(npm bin)/gulp",
     "start": "$(npm bin)/gulp serve",
     "test": "$(npm bin)/jest"
   },
@@ -29,6 +29,7 @@
     "del": "^1.1.1",
     "eslint": "^0.24.0",
     "eslint-plugin-react": "^2.6.4",
+    "event-stream": "^3.3.2",
     "express": "^4.12.3",
     "gulp": "^3.8.11",
     "gulp-eslint": "^1.0.0",
@@ -44,6 +45,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.4",
     "gulp-watch": "^4.2.4",
+    "hapi": "^11.1.0",
     "history": "~1.17.0",
     "http-proxy-middleware": "^0.9.0",
     "jasmine-object-matchers-jest": "^0.1.0",
@@ -52,6 +54,7 @@
     "lodash": "^4.5.1",
     "node-bourbon": "^4.2.3",
     "node-libs-browser": "^0.5.0",
+    "proxy-middleware": "^0.15.0",
     "react": "^0.14.3",
     "react-addons-test-utils": "^0.14.2",
     "react-dom": "^0.14.3",
@@ -65,10 +68,7 @@
     "webpack-hot-middleware": "^2.7.1",
     "webpack-stream": "^3.1.0"
   },
-  "devDependencies": {
-    "event-stream": "^3.3.2",
-    "hapi": "^11.1.0"
-  },
+  "devDependencies": {},
   "jest": {
     "verbose": true,
     "setupTestFrameworkScriptFile": "__tests__/test-setup.js",

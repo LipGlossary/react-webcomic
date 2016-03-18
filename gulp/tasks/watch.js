@@ -10,9 +10,9 @@ gulp.task('watch', ['watch-pre-task'], function() {
     });
   }
 
-  watch(config.watch.assets.src,       config.watch.assets.task);
-  watch(config.watch.jade.src,         config.watch.jade.task);
-  watch(config.watch.lintJs.src,       config.watch.lintJs.task);
-  watch(config.watch.sass.src,         config.watch.sass.task);
-  watch(config.watch.lintSass.src,     config.watch.lintSass.task);
+  watch(config.watch.assets.src,   config.watch.assets.task);
+  watch(config.watch.jade.src,     config.watch.jade.task);
+  watch(config.watch.lintJs.src,   config.watch.lintJs.task);
+  watch(config.watch.sass.src,     config.watch.sass.task);
+  watch(config.watch.lintSass.src, config.watch.lintSass.task);
 });

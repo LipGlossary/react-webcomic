@@ -1,1 +1,1 @@
-web: node server.js
+web: $(npm bin)/gulp production-server

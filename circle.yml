@@ -3,6 +3,8 @@ machine:
     version: 4.1.1
 
 dependencies:
+  cache_directories:
+    - "node_modules"
   pre:
     - npm uninstall gulp-sass node-sass --save
     - npm install gulp-sass node-sass --save
@@ -10,3 +12,9 @@ dependencies:
 test:
   pre:
     - $(npm bin)/gulp lint
+
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: react-webcomic
