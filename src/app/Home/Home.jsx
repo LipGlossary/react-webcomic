@@ -1,32 +1,19 @@
 import React           from 'react';
 import connectToStores from 'alt/utils/connectToStores';
-import request         from 'reqwest';
 import _               from 'lodash';
 import {join}          from 'path';
+import {Link}          from 'react-router';
 
-import HomeStore   from './HomeStore';
-import HomeActions from './HomeActions';
+import DataStore   from '../DataStore';
 
 class Home extends React.Component {
 
   static getStores () {
-    return [HomeStore];
+    return [DataStore];
   }
 
   static getPropsFromStores () {
-    return HomeStore.getState();
-  }
-
-  componentWillMount () {
-    request({
-      url: `${CONFIG.api}/default`
-    })
-    .then((response) => {
-      HomeActions.setData(response.data);
-    })
-    .catch((error) => {
-      throw new Error(error);
-    });
+    return DataStore.getState();
   }
 
   componentWillReceiveProps () { }
@@ -34,12 +21,12 @@ class Home extends React.Component {
   render () {
     let ChapterList = _.map(this.props.chapters, (chapter, c_index) => {
       let PageList = _.map(chapter.pages, (page, p_index) => {
-        let path = join('/assets/images', this.props.asset, chapter.asset, page);
+        let path = join('/', this.props.asset, chapter.asset, p_index.toString());
         return (
           <li key={p_index}>
-            <a href={path}>
-              {p_index + 1}
-            </a>
+            <Link to={path} data={page}>
+              {p_index}
+            </Link>
           </li>
         );
       });

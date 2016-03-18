@@ -1,10 +1,10 @@
-import alt from '../../lib/alt';
-import HomeActions from './HomeActions';
+import alt from '../lib/alt';
+import DataActions from './DataActions';
 
 // Store
-class HomeStore {
+class DataStore {
   constructor () {
-    this.bindActions(HomeActions);
+    this.bindActions(DataActions);
 
     this.state = {
       title: '',
@@ -22,4 +22,4 @@ class HomeStore {
   }
 }
 
-export default alt.createStore(HomeStore, 'HomeStore');
+export default alt.createStore(DataStore, 'DataStore');
