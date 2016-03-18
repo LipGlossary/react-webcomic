@@ -7,12 +7,18 @@ class HomeStore {
     this.bindActions(HomeActions);
 
     this.state = {
-      title: 'My Home Page'
+      title: '',
+      asset: '',
+      chapters: []
     };
   }
 
-  onSetTitle (title) {
-    this.setState({title: title});
+  onSetData (data) {
+    this.setState({
+      title: data.title,
+      asset: data.asset,
+      chapters: data.chapters
+    });
   }
 }
 

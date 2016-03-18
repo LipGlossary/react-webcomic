@@ -2,7 +2,7 @@ import alt  from '../../lib/alt';
 
 class HomeActions {
   constructor () {
-    this.generateActions('setTitle');
+    this.generateActions('setData');
   }
 }
 
