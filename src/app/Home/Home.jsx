@@ -19,21 +19,33 @@ class Home extends React.Component {
   componentWillReceiveProps () { }
 
   render () {
-    let ChapterList = _.map(this.props.chapters, (chapter, c_index) => {
-      let PageList = _.map(chapter.pages, (page, p_index) => {
-        let path = join('/', this.props.asset, chapter.asset, p_index.toString());
+    let SeriesList = _.map(this.props.data, (series, s_index) => {
+      let seriesPath = join('/', series.asset);
+      let ChapterList = _.map(series.chapters, (chapter, c_index) => {
+        let chapterPath = join(seriesPath, chapter.asset);
+        let PageList = _.map(chapter.pages, (page, p_index) => {
+          let pagePath = join(chapterPath, p_index.toString());
+          return (
+            <li key={p_index}>
+              <Link to={pagePath}>{p_index}</Link>
+            </li>
+          );
+        });
         return (
-          <li key={p_index}>
-            <Link to={path} data={page}>
-              {p_index}
+          <li key={c_index}>
+            <Link to={chapterPath}>
+              <p>{chapter.title}</p>
             </Link>
+            <ul>{PageList}</ul>
           </li>
         );
       });
       return (
-        <li key={c_index}>
-          <p>{chapter.title}</p>
-          <ul>{PageList}</ul>
+        <li key={s_index}>
+          <Link to={seriesPath}>
+            <p>{series.title}</p>
+          </Link>
+          <ul>{ChapterList}</ul>
         </li>
       );
     });
@@ -41,7 +53,7 @@ class Home extends React.Component {
     return (
       <div className='home__wrapper'>
         <h1>{this.props.title}</h1>
-        <ul>{ChapterList}</ul>
+        <ul>{SeriesList}</ul>
       </div>
     );
   }

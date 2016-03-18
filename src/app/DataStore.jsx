@@ -7,18 +7,12 @@ class DataStore {
     this.bindActions(DataActions);
 
     this.state = {
-      title: '',
-      asset: '',
-      chapters: []
+      data: []
     };
   }
 
   onSetData (data) {
-    this.setState({
-      title: data.title,
-      asset: data.asset,
-      chapters: data.chapters
-    });
+    this.setState({data: data});
   }
 }
 

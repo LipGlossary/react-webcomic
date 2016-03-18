@@ -20,28 +20,32 @@ class Page extends React.Component {
   componentWillReceiveProps () { }
 
   render () {
-    if (_.isEmpty(this.props.chapters)) { return false; }
+    if (_.isEmpty(this.props.data)) { return false; }
 
-    let chapter = this.props.params.chapter;
-    let page = this.props.params.page;
-    let chapterPath = join(this.props.params.series, chapter);
-    let pages = _.find(this.props.chapters, {asset: chapter}).pages;
+    let {series, chapter, page} = this.props.params;
+
+    let chapterPath = join(series, chapter);
+    let chapters = _
+      .chain(this.props.data)
+      .find({asset: series})
+      .value()
+      .chapters;
+    let pages = _
+      .chain(chapters)
+      .find({asset: chapter})
+      .value()
+      .pages;
     let asset = join('/assets/images/', chapterPath, pages[page]);
+
+    let prevPath = join(chapterPath, Math.max(page - 1, 0).toString());
+    let nextPath = join(chapterPath, Math.min(page + 1, pages.length - 1).toString());
 
     return (
       <div className='page__wrapper'>
         <Link to='/home'>Home</Link>
-        <Link
-          to={join(chapterPath, Math.max(page - 1, 0).toString())}
-        >
-          Previous
-        </Link>
-        <Link
-          to={join(chapterPath, Math.min(page + 1, pages.length - 1).toString())}
-        >
-          Next
-        </Link>
-        <img src={asset} />
+        <Link to={prevPath}>Previous</Link>
+        <Link to={nextPath}>Next</Link>
+        <Link to={nextPath}><img src={asset} /></Link>
       </div>
     );
   }
