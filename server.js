@@ -1,9 +1,7 @@
 var path = require('path');
 var express = require('express');
-var proxy = require('proxy-middleware');
 
 var app = express();
-app.use('/api', proxy('http://localhost:8090'))
 
 console.log('__dirname: ' + __dirname);
 var staticPath = path.resolve(__dirname, 'dist');

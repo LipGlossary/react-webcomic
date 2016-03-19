@@ -11,17 +11,13 @@ import Page     from './Home/Page';
 let routes = (
   <Route path="/" component={App}>
 
-    <Route path="home" component={Home}/>
+    <IndexRoute component={Home}/>
 
     <Route path=":series">
       <Route path=":chapter">
-        <Route path=":page" component={Page}>
-          <IndexRoute component={Home}/>
-        </Route>
+        <Route path=":page" component={Page} />
       </Route>
     </Route>
-
-    <IndexRoute component={Home}/>
 
   </Route>
 );
