@@ -2,6 +2,8 @@ import React           from 'react';
 import DataActions     from './DataActions';
 import CosmicService   from './services/CosmicService';
 
+import Home from './Components/Home';
+
 export default React.createClass({
 
   componentWillMount () {
@@ -16,6 +18,7 @@ export default React.createClass({
     return (
       <div className='app__wrapper'>
         {this.props.children}
+        <Home />
       </div>
     );
   }

@@ -46,7 +46,6 @@ class Chapter extends React.Component {
     if (this.props.renderAs === 'index') {
       return (
         <li className='chapter__wrapper red-box'>
-          <p>Chapter directory of pages.</p>
           <Link to={`/${series}/${chapter}`}>
             {chapterData.title}
           </Link>
@@ -57,12 +56,11 @@ class Chapter extends React.Component {
 
     return (
       <div className='chapter__wrapper blue-box'>
-        <p>Chapter page.</p>
         {chapterData.title}
-        <ul>{PageList}</ul>
         <div className='box'>
           {this.props.children}
         </div>
+        <ul>{PageList}</ul>
       </div>
     );
   }

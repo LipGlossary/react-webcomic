@@ -43,7 +43,6 @@ class Series extends React.Component {
     if (this.props.renderAs === 'index') {
       return (
         <li className='series__wrapper red-box'>
-          <p>Series directory of chapters.</p>
           <Link to={`/${slug}`}>{seriesData.title}</Link>
           <ul>{ChapterList}</ul>
         </li>
@@ -53,11 +52,10 @@ class Series extends React.Component {
     return (
       <div className='series__wrapper blue-box'>
         {seriesData.title}
-        <p>This is the series page.</p>
-        <ul>{ChapterList}</ul>
         <div className='box'>
           {this.props.children}
         </div>
+        <ul>{ChapterList}</ul>
       </div>
     );
   }

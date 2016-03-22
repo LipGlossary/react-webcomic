@@ -31,7 +31,7 @@ class Home extends React.Component {
 
     return (
       <div className='home__wrapper'>
-        home
+        <p>home</p>
         <ul>{SeriesList}</ul>
       </div>
     );
