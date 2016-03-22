@@ -57,10 +57,7 @@ class Chapter extends React.Component {
     return (
       <div className='chapter__wrapper blue-box'>
         {chapterData.title}
-        <div className='box'>
-          {this.props.children}
-        </div>
-        <ul>{PageList}</ul>
+        {this.props.children || <ul>{PageList}</ul>}
       </div>
     );
   }

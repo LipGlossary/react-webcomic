@@ -52,10 +52,7 @@ class Series extends React.Component {
     return (
       <div className='series__wrapper blue-box'>
         {seriesData.title}
-        <div className='box'>
-          {this.props.children}
-        </div>
-        <ul>{ChapterList}</ul>
+        {this.props.children || <ul>{ChapterList}</ul>}
       </div>
     );
   }
