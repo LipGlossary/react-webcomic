@@ -32,7 +32,7 @@ class Page extends React.Component {
     let chapterPath = join('/', series, `${chapter}`);
     let prevPath = join(chapterPath, `${Math.max(page - 1, 0)}`);
     let nextPath = join(chapterPath, `${Math.min(page + 1, chapterData.pages.length - 1)}`);
-    let imageSrc = join('https://cosmicjs.com/uploads', pageData.asset);
+    let imageSrc = `https://cosmicjs.com/uploads/${pageData.asset}`;
 
     if (this.props.renderAs === 'index') {
       return (
@@ -56,6 +56,7 @@ class Page extends React.Component {
           </li>
         </ul>
         <div>
+          <p>{pageData.asset}</p>
           <Link to={nextPath}>
             <img src={imageSrc} />
           </Link>
