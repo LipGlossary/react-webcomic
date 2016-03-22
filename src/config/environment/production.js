@@ -1,3 +1,3 @@
 module.exports = {
-  api: '/api'
+  api: 'https://api.cosmicjs.com/v1/lonelyrobot'
 };
