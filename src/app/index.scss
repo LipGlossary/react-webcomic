@@ -1,10 +1,42 @@
 // inject:scss
 // endinject
 
-body {
-  background: #fafafa;
+@import '../assets/css/reset';
+@import '../assets/css/colors';
+
+%link {
+  border-bottom-color: transparent;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  text-decoration: none;
 }
 
-.box { background-color: rgba(0,0,0,0.1); }
-.red-box { background-color: rgba(255,0,0,0.1); }
-.blue-box { background-color: rgba(0,0,255,0.1); }
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #eeeeee;
+  font-family: sans-serif;
+  font-size: 10pt;
+  line-height: 1.4em;
+
+  a {
+
+    &:link {
+      @extend %link;
+      color: $link-color;
+    }
+
+    &:visited {
+      @extend %link;
+      color: $link-color-visited;
+    }
+
+    &:hover {
+      @extend %link;
+      border-bottom-color: inherit;
+    }
+  }
+}
+

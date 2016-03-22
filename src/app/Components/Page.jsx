@@ -36,7 +36,7 @@ class Page extends React.Component {
 
     if (this.props.renderAs === 'index') {
       return (
-        <li className='page__wrapper red-box'>
+        <li className='page__wrapper'>
           <Link to={`/${series}/${chapter}/${page}`}>
             {pageData.title}
           </Link>
@@ -45,7 +45,7 @@ class Page extends React.Component {
     }
 
     return (
-      <div className='page__wrapper blue-box'>
+      <div className='page__wrapper'>
         <p>{pageData.title}</p>
         <ul>
           <li>

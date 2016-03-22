@@ -40,23 +40,16 @@ class Series extends React.Component {
       );
     });
 
-    if (this.props.renderAs === 'index') {
-      return (
-        <li className='series__wrapper red-box'>
-          <p>
-            <Link to={`/${slug}`}>{seriesData.title}</Link>
-          </p>
-          <ul>{ChapterList}</ul>
-        </li>
-      );
-    }
-
     return (
-      <div className='series__wrapper blue-box'>
+      <div className='series__wrapper'>
         <p>
           <Link to={`/${slug}`}>{seriesData.title}</Link>
         </p>
-        {this.props.children || <ul>{ChapterList}</ul>}
+        {
+          this.props.renderAs === 'index'
+          ? <ul>{ChapterList}</ul>
+          : this.props.children || <ul>{ChapterList}</ul>
+        }
       </div>
     );
   }

@@ -43,27 +43,18 @@ class Chapter extends React.Component {
       );
     });
 
-    if (this.props.renderAs === 'index') {
-      return (
-        <li className='chapter__wrapper red-box'>
-          <p>
-            <Link to={`/${series}/${chapter}`}>
-              {chapterData.title}
-            </Link>
-          </p>
-          <ul>{PageList}</ul>
-        </li>
-      );
-    }
-
     return (
-      <div className='chapter__wrapper blue-box'>
+      <div className='chapter__wrapper'>
         <p>
           <Link to={`/${series}/${chapter}`}>
             {chapterData.title}
           </Link>
         </p>
-        {this.props.children || <ul>{PageList}</ul>}
+        {
+          this.props.renderAs === 'index'
+          ? <ul>{PageList}</ul>
+          : this.props.children || <ul>{PageList}</ul>
+        }
       </div>
     );
   }
