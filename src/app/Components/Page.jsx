@@ -1,6 +1,7 @@
 import React           from 'react';
 import {Link}          from 'react-router';
 import connectToStores from 'alt/utils/connectToStores';
+import {join}          from 'path';
 import _               from 'lodash';
 
 import DataStore from '../DataStore';
@@ -28,6 +29,11 @@ class Page extends React.Component {
     let pageData = this.props.data || _.find(chapterData.pages, {page: parseInt(page, 10)});
     // let slug = this.props.slug || pageData.slug;
 
+    let chapterPath = join('/', series, `${chapter}`);
+    let prevPath = join(chapterPath, `${Math.max(page - 1, 0)}`);
+    let nextPath = join(chapterPath, `${Math.min(page + 1, chapterData.pages.length - 1)}`);
+    let imageSrc = join('https://cosmicjs.com/uploads', pageData.asset);
+
     if (this.props.renderAs === 'index') {
       return (
         <li className='page__wrapper red-box'>
@@ -40,7 +46,20 @@ class Page extends React.Component {
 
     return (
       <div className='page__wrapper blue-box'>
-        {pageData.title}
+        <p>{pageData.title}</p>
+        <ul>
+          <li>
+            <Link to={prevPath}>Previous ({Math.max(page - 1, 0)})</Link>
+          </li>
+          <li>
+            <Link to={nextPath}>Next ({Math.min(page + 1, chapterData.pages.length - 1)})</Link>
+          </li>
+        </ul>
+        <div>
+          <Link to={nextPath}>
+            <img src={imageSrc} />
+          </Link>
+        </div>
       </div>
     );
   }

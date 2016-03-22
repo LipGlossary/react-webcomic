@@ -1,4 +1,5 @@
 import React           from 'react';
+import {Link}          from 'react-router';
 import connectToStores from 'alt/utils/connectToStores';
 import _               from 'lodash';
 
@@ -31,7 +32,7 @@ class Home extends React.Component {
 
     return (
       <div className='home__wrapper'>
-        <p>home</p>
+        <p><Link to='/'>home</Link></p>
         <ul>{SeriesList}</ul>
       </div>
     );
