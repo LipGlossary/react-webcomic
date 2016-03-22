@@ -42,7 +42,7 @@
     "no-regex-spaces": 2,
     "no-reserved-keys": 0,
     "no-sparse-arrays": 2,
-    "no-unreachable": 2,
+    "no-unreachable": 1,
     "use-isnan": 2,
     "valid-jsdoc": 0,
     "valid-typeof": 2,
@@ -108,7 +108,7 @@
     "no-unused-vars": 1,
     "no-use-before-define": 2,
     // Stylistic Issues
-    "indent": [2, 2, {
+    "indent": [1, 2, {
      "SwitchCase": 1
     }],
     "brace-style": 0,

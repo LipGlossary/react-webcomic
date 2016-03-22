@@ -7,7 +7,7 @@ class DataActions {
   }
 
   setData (data) {
-    let {chapters, pages, series} = data.type;
+    let {chapters, pages, series} = data;
     chapters = _.groupBy(chapters, 'metafield.series.value');
     pages = _.groupBy(pages, 'metafield.series.value');
     let parsedSeries = _
