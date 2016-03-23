@@ -7,24 +7,24 @@ class DataActions {
   }
 
   setData (data) {
-    let {chapters, pages, series} = data;
-    chapters = _.groupBy(chapters, 'metafield.series.value');
-    pages = _.groupBy(pages, 'metafield.series.value');
+    let {series, chapters, pages} = data;
+    chapters = _.groupBy(chapters, 'series');
+    pages = _.groupBy(pages, 'series');
     let parsedSeries = _
     .chain(series)
     .map((s) => {
-      let chapterPages = _.groupBy(pages[s.slug], 'metafield.chapter.value');
+      let chapterPages = _.groupBy(pages[s.slug], 'chapter');
       return {
         title: s.title,
         slug: s.slug,
         chapters: _
         .chain(chapters[s.slug])
         .map((c) => {
-          let chapterNum = c.metafield.chapter.value;
+          let chapterNum = c.chapter;
           return {
             title: c.title,
             slug: c.slug,
-            series: c.metafield.series.value,
+            series: c.series,
             chapter: chapterNum,
             pages: _
             .chain(chapterPages[chapterNum])
@@ -32,10 +32,10 @@ class DataActions {
               return {
                 title: p.title,
                 slug: p.slug,
-                series: p.metafield.series.value,
-                chapter: p.metafield.chapter.value,
-                page: p.metafield.page.value,
-                asset: p.metafield.asset.value
+                series: p.series,
+                chapter: p.chapter,
+                page: p.page,
+                asset: p.asset
               };
             })
             .sortBy('page')
