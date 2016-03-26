@@ -4,6 +4,8 @@
 @import '../assets/css/reset';
 @import '../assets/css/colors';
 
+$footer-gutters: 3em;
+
 %link {
   border-bottom-color: transparent;
   border-bottom-style: dotted;

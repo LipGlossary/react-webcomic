@@ -1,0 +1,27 @@
+%divider-after {
+
+  & {
+    position: relative;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    right: $footer-gutters / -2;
+  }
+}
+
+.footer__wrapper {
+  display: flex;
+  margin-left: -$footer-gutters;
+  padding: 1em;
+  background-color: $grey;
+
+  & > * {
+    margin-left: $footer-gutters;
+  }
+
+}

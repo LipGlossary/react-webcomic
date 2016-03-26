@@ -1,6 +1,7 @@
 $black: #000000;
+$grey: rgb(128, 128, 128);
 $white: #ffffff;
 
-$link-color: lighten(#000000, 20%);
-$link-color-visited: lighten($link-color, 20%);
+$link-color: lighten(#000000, 10%);
+$link-color-visited: lighten($link-color, 10%);
 $header-link-color-hover: rgba(255, 0, 0, 0.5);

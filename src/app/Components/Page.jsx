@@ -3,6 +3,7 @@ import {Link}          from 'react-router';
 import connectToStores from 'alt/utils/connectToStores';
 import {join}          from 'path';
 import _               from 'lodash';
+import cx              from 'classnames';
 
 import DataStore from '../DataStore';
 
@@ -34,9 +35,11 @@ class Page extends React.Component {
     let nextPath = join(chapterPath, `${Math.min(page + 1, chapterData.pages.length - 1)}`);
     let imageSrc = `https://cosmicjs.com/uploads/${pageData.asset}`;
 
-    if (this.props.renderAs === 'index') {
+    let classes = cx('page__wrapper', this.props.renderAs);
+
+    if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
       return (
-        <li className='page__wrapper'>
+        <li className={classes}>
           <Link to={`/${series}/${chapter}/${page}`}>
             {pageData.title}
           </Link>
@@ -45,14 +48,16 @@ class Page extends React.Component {
     }
 
     return (
-      <div className='page__wrapper'>
+      <div className={classes}>
         <p>{pageData.title}</p>
         <ul>
           <li>
             <Link to={prevPath}>Previous ({Math.max(page - 1, 0)})</Link>
           </li>
           <li>
-            <Link to={nextPath}>Next ({Math.min(page + 1, chapterData.pages.length - 1)})</Link>
+            <Link to={nextPath}>
+              Next ({Math.min(page + 1, chapterData.pages.length - 1)})
+            </Link>
           </li>
         </ul>
         <div>

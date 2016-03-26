@@ -2,6 +2,7 @@ import React           from 'react';
 import {Link}          from 'react-router';
 import connectToStores from 'alt/utils/connectToStores';
 import _               from 'lodash';
+import cx              from 'classnames';
 
 import DataStore from '../DataStore';
 import Page      from './Page';
@@ -36,25 +37,32 @@ class Chapter extends React.Component {
           key={index}
           page={page.page}
           params={params}
-          renderAs='index'
+          renderAs={this.props.renderAs || 'index'}
           series={this.props.series}
           slug={page.slug}
         />
       );
     });
 
+    let classes = cx('chapter__wrapper', this.props.renderAs);
+
+    if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
+      return (
+        <li className={classes}>
+          <p>
+            <Link to={`/${series}/${chapter}`}>{chapterData.title}</Link>
+          </p>
+          <ul className='page-list'>{PageList}</ul>
+        </li>
+      );
+    }
+
     return (
-      <div className='chapter__wrapper'>
+      <div className={classes}>
         <p>
-          <Link to={`/${series}/${chapter}`}>
-            {chapterData.title}
-          </Link>
+          <Link to={`/${series}/${chapter}`}>{chapterData.title}</Link>
         </p>
-        {
-          this.props.renderAs === 'index'
-          ? <ul>{PageList}</ul>
-          : this.props.children || <ul>{PageList}</ul>
-        }
+        { this.props.children || <ul>{PageList}</ul> }
       </div>
     );
   }

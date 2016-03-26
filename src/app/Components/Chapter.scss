@@ -1,0 +1,23 @@
+$footer-page-gutters: 1em;
+
+.chapter__wrapper {
+
+  &.footer,
+  &.index {
+    display: flex;
+    margin-left: -$footer-gutters;
+
+    & > * {
+      margin-left: $footer-gutters;
+    }
+
+    & > p {
+      @extend %divider-after;
+    }
+  }
+
+  .page-list {
+    display: flex;
+    margin-left: $footer-gutters - $footer-page-gutters;
+  }
+}

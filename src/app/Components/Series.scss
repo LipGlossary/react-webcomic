@@ -1,0 +1,16 @@
+.series__wrapper {
+
+  &.footer,
+  &.index {
+    display: flex;
+    margin-left: -$footer-gutters;
+
+    & > * {
+      margin-left: $footer-gutters;
+    }
+
+    & > p {
+      @extend %divider-after;
+    }
+  }
+}

@@ -23,7 +23,7 @@ class Footer extends React.Component {
         <Series
           data={series}
           key={index}
-          renderAs='index'
+          renderAs='footer'
           series={series.slug}
           slug={series.slug}
         />

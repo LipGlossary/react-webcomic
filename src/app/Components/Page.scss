@@ -1,0 +1,7 @@
+.page__wrapper {
+
+  &.footer,
+  &.index {
+    margin-left: $footer-page-gutters;
+  }
+}

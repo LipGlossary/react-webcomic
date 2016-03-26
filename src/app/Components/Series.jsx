@@ -2,6 +2,7 @@ import React           from 'react';
 import {Link}          from 'react-router';
 import connectToStores from 'alt/utils/connectToStores';
 import _               from 'lodash';
+import cx              from 'classnames';
 
 import DataStore from '../DataStore';
 import Chapter   from './Chapter';
@@ -33,23 +34,32 @@ class Series extends React.Component {
           data={chapter}
           key={index}
           params={params}
-          renderAs='index'
+          renderAs={this.props.renderAs || 'index'}
           series={this.props.series}
           slug={chapter.slug}
         />
       );
     });
 
+    let classes = cx('series__wrapper', this.props.renderAs);
+
+    if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
+      return (
+        <li className={classes}>
+          <p>
+            <Link to={`/${slug}`}>{seriesData.title}</Link>
+          </p>
+          <ul>{ChapterList}</ul>
+        </li>
+      );
+    }
+
     return (
-      <div className='series__wrapper'>
+      <div className={classes}>
         <p>
           <Link to={`/${slug}`}>{seriesData.title}</Link>
         </p>
-        {
-          this.props.renderAs === 'index'
-          ? <ul>{ChapterList}</ul>
-          : this.props.children || <ul>{ChapterList}</ul>
-        }
+        { this.props.children || <ul>{ChapterList}</ul> }
       </div>
     );
   }
