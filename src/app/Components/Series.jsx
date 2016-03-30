@@ -41,26 +41,25 @@ class Series extends React.Component {
       );
     });
 
-    let classes = cx('series__wrapper', this.props.renderAs);
+    let TitleElement = seriesData.title;
+    let wrapperElement = 'div';
 
-    if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
-      return (
-        <li className={classes}>
-          <p>
-            <Link to={`/${slug}`}>{seriesData.title}</Link>
-          </p>
-          <ul>{ChapterList}</ul>
-        </li>
-      );
+    if (this.props.renderAs || this.props.children) {
+      TitleElement = <Link to={`/${slug}`}>{TitleElement}</Link>;
+
+      if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
+        wrapperElement = 'li';
+      }
     }
 
-    return (
-      <div className={classes}>
-        <p>
-          <Link to={`/${slug}`}>{seriesData.title}</Link>
-        </p>
-        { this.props.children || <ul>{ChapterList}</ul> }
-      </div>
+    let classes = cx(
+      'series__wrapper',
+      this.props.renderAs || (this.props.children ? 'breadcrumb' : 'main')
+    );
+
+    return React.createElement(wrapperElement, {className: classes},
+      <h1>{TitleElement}</h1>,
+      this.props.children || <ul className='chapter-list'>{ChapterList}</ul>
     );
   }
 }

@@ -35,21 +35,23 @@ class Page extends React.Component {
     let nextPath = join(chapterPath, `${Math.min(page + 1, chapterData.pages.length - 1)}`);
     let imageSrc = `https://cosmicjs.com/uploads/${pageData.asset}`;
 
-    let classes = cx('page__wrapper', this.props.renderAs);
+    let classes = cx('page__wrapper', this.props.renderAs || 'main');
 
     if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
       return (
         <li className={classes}>
-          <Link to={`/${series}/${chapter}/${page}`}>
-            {pageData.title}
-          </Link>
+          <h3>
+            <Link to={`/${series}/${chapter}/${page}`}>
+              {pageData.title}
+            </Link>
+          </h3>
         </li>
       );
     }
 
     return (
       <div className={classes}>
-        <p>{pageData.title}</p>
+        <h3>{pageData.title}</h3>
         <ul>
           <li>
             <Link to={prevPath}>Previous ({Math.max(page - 1, 0)})</Link>

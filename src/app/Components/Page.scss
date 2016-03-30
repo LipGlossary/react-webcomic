@@ -1,7 +1,11 @@
 .page__wrapper {
 
-  &.footer,
   &.index {
+    margin-top: $index-page-gutters;
+    margin-left: $index-page-gutters;
+  }
+
+  &.footer {
     margin-left: $footer-page-gutters;
   }
 }

@@ -44,26 +44,32 @@ class Chapter extends React.Component {
       );
     });
 
-    let classes = cx('chapter__wrapper', this.props.renderAs);
+    let wrapperElement = 'div';
+    let Thumbnail;
 
-    if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
-      return (
-        <li className={classes}>
-          <p>
-            <Link to={`/${series}/${chapter}`}>{chapterData.title}</Link>
-          </p>
-          <ul className='page-list'>{PageList}</ul>
-        </li>
+    if (this.props.renderAs === 'index' || !this.props.renderAs) {
+      Thumbnail = (
+        <Link to={`/${series}/${chapter}`} className='thumbnail'>
+          <img src={`https://cosmicjs.com/uploads/${_.first(pagesData).asset}`} />
+        </Link>
       );
     }
 
-    return (
-      <div className={classes}>
-        <p>
-          <Link to={`/${series}/${chapter}`}>{chapterData.title}</Link>
-        </p>
-        { this.props.children || <ul>{PageList}</ul> }
-      </div>
+    if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
+      wrapperElement = 'li';
+    }
+
+    let classes = cx(
+      'chapter__wrapper',
+      this.props.renderAs || (this.props.children || 'main')
+    );
+
+    return React.createElement(wrapperElement, {className: classes},
+      <h2>
+        <Link to={`/${series}/${chapter}`}>{chapterData.title}</Link>
+      </h2>,
+      Thumbnail,
+      this.props.children || <ul className='pages-list'>{PageList}</ul>
     );
   }
 }
