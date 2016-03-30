@@ -1,6 +1,6 @@
 module.exports = [
   {
-    route: '/lonelyrobot/object-types',
+    route: '/object-types',
     method: 'GET',
     code: 200,
     response: () => {
