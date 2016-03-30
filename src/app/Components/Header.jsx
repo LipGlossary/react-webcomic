@@ -5,7 +5,7 @@ export default class Header extends React.Component {
 
   render () {
     return (
-      <header className='header__wrapper'>
+      <div className='header__wrapper'>
         <Link to='/' className='logo'>
           <img src='/assets/images/lrs-logo-horizontal.png' />
         </Link>
@@ -16,7 +16,7 @@ export default class Header extends React.Component {
             </li>
           </ul>
         </nav>
-      </header>
+      </div>
     );
   }
 }

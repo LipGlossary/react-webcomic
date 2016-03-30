@@ -19,9 +19,15 @@ export default React.createClass({
   render () {
     return (
       <div className='app__wrapper'>
-        <Header />
-        { this.props.children || <Home /> }
-        <Footer />
+        <header>
+          <Header />
+        </header>
+        <main>
+          {this.props.children || <Home /> }
+        </main>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     );
   }

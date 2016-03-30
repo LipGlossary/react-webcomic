@@ -4,6 +4,7 @@
 @import '../assets/css/reset';
 @import '../assets/css/colors';
 
+$index-gutters: 1em;
 $footer-gutters: 3em;
 
 %link {
@@ -17,8 +18,13 @@ $footer-gutters: 3em;
   box-sizing: border-box;
 }
 
+html,
+body,
+#content {
+  height: 100%; // scss-lint:disable no-ids
+}
+
 body {
-  background: #eeeeee;
   font-family: sans-serif;
   font-size: 10pt;
   line-height: 1.4em;
@@ -41,4 +47,3 @@ body {
     }
   }
 }
-
