@@ -3,22 +3,33 @@
   background-color: $white;
   display: flex;
   height: 8vh;
-  justify-content: space-between;
-  padding-left: 1vw;
   padding-right: 1vw;
 
   & > * {
     margin-right: 1em;
   }
 
-  .logo {
-    border: none;
-    height: 100%;
+  .imprint {
+    align-items: center;
+    display: flex;
+    height: inherit;
     padding-bottom: 0.5vh;
+    padding-left: 1vw;
     padding-top: 0.5vh;
+
+    &:hover {
+      box-shadow: inset 0.5em 0 0 0 $header-link-color-hover;
+    }
 
     img {
       height: 100%;
+      padding-right: 1vw;
+    }
+
+    p {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-top: 1em;
     }
   }
 
@@ -26,26 +37,23 @@
     align-items: center;
     display: flex;
     height: 100%;
+    margin-left: auto;
+    padding-top: 1em;
 
     ul {
       align-items: center;
       display: flex;
       height: 100%;
       list-style-type: none;
+    }
 
-      li {
-        align-items: center;
-        display: flex;
-        height: 100%;
+    li {
+      align-items: center;
+      display: flex;
+      height: 100%;
 
-        &:hover {
-          box-shadow: inset 0 -0.5em 0 0 $header-link-color-hover;
-        }
-
-        a {
-          border: none;
-          color: $black;
-        }
+      &:hover {
+        box-shadow: inset 0 -0.5em 0 0 $header-link-color-hover;
       }
     }
   }

@@ -7,13 +7,6 @@
 $index-gutters: 1em;
 $footer-gutters: 3em;
 
-%link {
-  border-bottom-color: transparent;
-  border-bottom-style: dotted;
-  border-bottom-width: 1px;
-  text-decoration: none;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -30,20 +23,29 @@ body {
   line-height: 1.4em;
 
   a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
 
-    &:link {
-      @extend %link;
-      color: $link-color;
-    }
+%link {
+  position: relative;
 
-    &:visited {
-      @extend %link;
-      color: $link-color-visited;
-    }
+  &:link {
+    color: $link-color;
+  }
 
-    &:hover {
-      @extend %link;
-      border-bottom-color: inherit;
-    }
+  &:visited {
+    color: $link-color-visited;
+  }
+
+  &:hover:not(.image):after {
+    width: 100%;
+    position: absolute;
+    border-bottom-style: dotted;
+    border-bottom-width: 1px;
+    content: '';
+    left: 0;
+    bottom: -0.125em;
   }
 }

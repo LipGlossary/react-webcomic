@@ -16,5 +16,9 @@
     & > * {
       height: 100%;
     }
+
+    a {
+      @extend %link;
+    }
   }
 }

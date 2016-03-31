@@ -21,7 +21,7 @@
       margin-left: $footer-gutters;
     }
 
-    & > p {
+    h1 {
       @extend %divider-after;
     }
   }

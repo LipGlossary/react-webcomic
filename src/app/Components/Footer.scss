@@ -24,4 +24,8 @@
     margin-left: $footer-gutters;
   }
 
+  a {
+    @extend %link;
+  }
+
 }
