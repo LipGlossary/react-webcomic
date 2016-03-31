@@ -1,9 +1,30 @@
-import React  from 'react';
-import {Link} from 'react-router';
+import React           from 'react';
+import {Link}          from 'react-router';
+import connectToStores from 'alt/utils/connectToStores';
+import _               from 'lodash';
 
-export default class Header extends React.Component {
+import DataStore from '../DataStore';
+
+class Header extends React.Component {
+
+  static getStores () {
+    return [DataStore];
+  }
+
+  static getPropsFromStores () {
+    return DataStore.getState();
+  }
 
   render () {
+
+    let SeriesList = _.map(this.props.projects, (series, index) => {
+      return (
+        <li key={index}>
+          <Link to={`/${series.slug}`}>{series.title}</Link>
+        </li>
+      );
+    });
+
     return (
       <div className='header__wrapper'>
         <Link to='/' className='imprint'>
@@ -11,13 +32,11 @@ export default class Header extends React.Component {
           <p>Comics</p>
         </Link>
         <nav>
-          <ul>
-            <li>
-              <Link to='/belfry'>Belfry Twins</Link>
-            </li>
-          </ul>
+          <ul>{SeriesList}</ul>
         </nav>
       </div>
     );
   }
 }
+
+export default connectToStores(Header);
