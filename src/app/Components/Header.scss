@@ -16,9 +16,21 @@
     padding-bottom: 0.5vh;
     padding-left: 1vw;
     padding-top: 0.5vh;
+    position: relative;
 
-    &:hover {
-      box-shadow: inset 0.5em 0 0 0 $header-link-color-hover;
+    &:before {
+      background-color: $header-link-color-hover;
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      top: 0;
+      transition: width 0.25s ease-in-out;
+      width: 0;
+    }
+
+    &:hover:before {
+      width: 0.5em;
     }
 
     img {
@@ -38,7 +50,6 @@
     display: flex;
     height: 100%;
     margin-left: auto;
-    padding-top: 1em;
 
     ul {
       align-items: center;
@@ -51,10 +62,29 @@
       align-items: center;
       display: flex;
       height: 100%;
+      position: relative;
 
-      &:hover {
-        box-shadow: inset 0 -0.5em 0 0 $header-link-color-hover;
+      &:after {
+        background-color: $header-link-color-hover;
+        bottom: 0;
+        content: '';
+        height: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        transition: height 0.25s ease-in-out;
       }
+
+      &:hover:after {
+        height: 0.5em;
+      }
+    }
+
+    a {
+      align-items: center;
+      display: flex;
+      height: inherit;
+      padding-top: 1em;
     }
   }
 }

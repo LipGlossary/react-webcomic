@@ -39,13 +39,19 @@ body {
     color: $link-color-visited;
   }
 
-  &:hover:not(.image):after {
-    width: 100%;
-    position: absolute;
+  &:not(.image):after {
     border-bottom-style: dotted;
     border-bottom-width: 1px;
+    bottom: -0.125em;
     content: '';
     left: 0;
-    bottom: -0.125em;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  &:not(.image):hover:after {
+    opacity: 1;
   }
 }

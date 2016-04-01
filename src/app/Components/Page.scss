@@ -45,22 +45,47 @@
     li {
       flex-grow: 1;
       position: relative;
+
+      &:after {
+        background-color: $header-link-color-hover;
+        bottom: 0;
+        content: '';
+        position: absolute;
+        top: 0;
+        transition-duration: 0.25s;
+        transition-property: transform, width;
+        transition-timing-function: ease-in-out;
+        width: 0;
+      }
+
+      &:hover:after {
+        width: 0.5em;
+      }
     }
   }
+
 
   .prev {
     width: 30%;
 
-    &:hover {
-      box-shadow: -0.5em 0 0 0 $header-link-color-hover;
+    &:after {
+      left: 0;
+    }
+
+    &:hover:after {
+      transform: translateX(-0.5em);
     }
   }
 
   .next {
     width: 70%;
 
-    &:hover {
-      box-shadow: 0.5em 0 0 0 $header-link-color-hover;
+    &:after {
+      right: 0;
+    }
+
+    &:hover:after {
+      transform: translateX(0.5em);
     }
   }
 }
