@@ -1,11 +1,35 @@
 .page__wrapper {
 
-  &.index {
-    margin-top: $index-page-gutters;
-    margin-left: $index-page-gutters;
-  }
-
   &.footer {
     margin-left: $footer-page-gutters;
   }
+
+  &.index {
+    margin-left: $index-page-gutters;
+    margin-top: $index-page-gutters;
+  }
+
+  &.main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10vh 5vw;
+
+  }
+
+  .viewer {
+    padding: 1em;
+    background-color: rgba($white, 0.7);
+
+    a:after {
+      display: none;
+    }
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+  }
+
 }

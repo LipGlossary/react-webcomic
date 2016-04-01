@@ -24,16 +24,11 @@ class Page extends React.Component {
     let params = this.props.params || {};
     let series = params.series || this.props.series;
     let chapter = params.chapter || this.props.chapter;
-    let page = params.page || this.props.page;
+    let page = parseInt(params.page || this.props.page, 10);
     let seriesData = _.find(this.props.projects, {slug: series});
     let chapterData = _.find(seriesData.chapters, {chapter: parseInt(chapter, 10)});
     let pageData = this.props.data || _.find(chapterData.pages, {page: parseInt(page, 10)});
     // let slug = this.props.slug || pageData.slug;
-
-    let chapterPath = join('/', series, `${chapter}`);
-    let prevPath = join(chapterPath, `${Math.max(page - 1, 0)}`);
-    let nextPath = join(chapterPath, `${Math.min(page + 1, chapterData.pages.length - 1)}`);
-    let imageSrc = `https://cosmicjs.com/uploads/${pageData.asset}`;
 
     let classes = cx('page__wrapper', this.props.renderAs || 'main');
 
@@ -49,24 +44,42 @@ class Page extends React.Component {
       );
     }
 
+    let NextElement, PrevElement;
+    let chapterPath = join('/', series, `${chapter}`);
+    let ImageElement = <img src={`https://cosmicjs.com/uploads/${pageData.asset}`} />;
+
+    if (page - 1 >= 0) {
+      let prevPage = Math.max(page - 1, 0);
+      PrevElement = (
+        <Link to={join(chapterPath, `${prevPage}`)} title={`page ${prevPage}`}>
+          Previous
+        </Link>
+      );
+    }
+
+    if (page + 1 < chapterData.pages.length) {
+      let nextPage = Math.min(page + 1, chapterData.pages.length - 1);
+      let nextPath = join(chapterPath, `${nextPage}`);
+
+      NextElement = <Link to={nextPath} title={`page ${nextPage}`}>Next</Link>;
+
+      ImageElement = <Link to={nextPath} className='image'>{ImageElement}</Link>;
+    }
+
+    let NavElement = (
+      <ul className='nav'>
+        <li>{PrevElement}</li>
+        <li>{NextElement}</li>
+      </ul>
+    );
+
     return (
       <div className={classes}>
         <h3>{pageData.title}</h3>
-        <ul>
-          <li>
-            <Link to={prevPath}>Previous ({Math.max(page - 1, 0)})</Link>
-          </li>
-          <li>
-            <Link to={nextPath}>
-              Next ({Math.min(page + 1, chapterData.pages.length - 1)})
-            </Link>
-          </li>
-        </ul>
-        <div>
-          <p>{pageData.asset}</p>
-          <Link to={nextPath}>
-            <img src={imageSrc} />
-          </Link>
+        <div className='viewer'>
+          {NavElement}
+          {ImageElement}
+          {NavElement}
         </div>
       </div>
     );

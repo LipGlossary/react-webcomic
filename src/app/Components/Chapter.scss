@@ -3,22 +3,19 @@ $index-page-gutters: $index-chapter-gutters / 2;
 $footer-page-gutters: 1em;
 
 .chapter__wrapper {
-  display: flex;
 
-  &.index,
-  &.main {
-    align-items: center;
-    flex-direction: column;
+  &.breadcrumb {
 
-    .pages-list {
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-left: $index-page-gutters - $index-chapter-gutters;
-      margin-top: $index-page-gutters - $index-chapter-gutters;
+    h2 {
+      padding: 1em;
+      position: absolute;
+      right: 0;
+      z-index: 1;
     }
   }
 
   &.footer {
+    display: flex;
     margin-left: -$footer-gutters;
 
     & > * {
@@ -31,6 +28,20 @@ $footer-page-gutters: 1em;
 
     .pages-list {
       margin-left: $footer-gutters - $footer-page-gutters;
+    }
+  }
+
+  &.index,
+  &.main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    .pages-list {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-left: $index-page-gutters - $index-chapter-gutters;
+      margin-top: $index-page-gutters - $index-chapter-gutters;
     }
   }
 

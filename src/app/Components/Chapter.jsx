@@ -27,6 +27,7 @@ class Chapter extends React.Component {
     let seriesData = _.find(this.props.projects, {slug: series});
     let chapterData = this.props.data || _.find(seriesData.chapters, {chapter: parseInt(chapter, 10)});
     let pagesData = chapterData.pages;
+    let renderAs = this.props.renderAs || (this.props.children ? 'breadcrumb' : 'main');
     // let slug = this.props.slug || chapterData.slug;
 
     let PageList = _.map(pagesData, (page, index) => {
@@ -48,10 +49,10 @@ class Chapter extends React.Component {
     let Thumbnail;
     let TitleElement = chapterData.title;
 
-    if (this.props.renderAs === 'index' || !this.props.renderAs) {
+    if (renderAs === 'index' || renderAs === 'main') {
       let link = `/${series}/${chapter}`;
 
-      if (!this.props.renderAs) {
+      if (renderAs === 'main') {
         link += `/${pagesData[0].page}`;
       }
 
@@ -64,16 +65,13 @@ class Chapter extends React.Component {
 
     if (this.props.renderAs || this.props.children) {
       TitleElement = <Link to={`/${series}/${chapter}`}>{TitleElement}</Link>;
-
-      if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
-        wrapperElement = 'li';
-      }
     }
 
-    let classes = cx(
-      'chapter__wrapper',
-      this.props.renderAs || (this.props.children || 'main')
-    );
+    if (this.props.renderAs) {
+      wrapperElement = 'li';
+    }
+
+    let classes = cx('chapter__wrapper', renderAs);
 
     return React.createElement(wrapperElement, {className: classes},
       <h2>{TitleElement}</h2>,
