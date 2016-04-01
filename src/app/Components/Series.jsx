@@ -2,6 +2,7 @@ import React           from 'react';
 import {Link}          from 'react-router';
 import connectToStores from 'alt/utils/connectToStores';
 import _               from 'lodash';
+import cx              from 'classnames';
 
 import DataStore from '../DataStore';
 import Chapter   from './Chapter';
@@ -33,27 +34,32 @@ class Series extends React.Component {
           data={chapter}
           key={index}
           params={params}
-          renderAs='index'
+          renderAs={this.props.renderAs || 'index'}
           series={this.props.series}
           slug={chapter.slug}
         />
       );
     });
 
-    if (this.props.renderAs === 'index') {
-      return (
-        <li className='series__wrapper red-box'>
-          <Link to={`/${slug}`}>{seriesData.title}</Link>
-          <ul>{ChapterList}</ul>
-        </li>
-      );
+    let TitleElement = seriesData.title;
+    let wrapperElement = 'div';
+
+    if (this.props.renderAs || this.props.children) {
+      TitleElement = <Link to={`/${slug}`}>{TitleElement}</Link>;
+
+      if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
+        wrapperElement = 'li';
+      }
     }
 
-    return (
-      <div className='series__wrapper blue-box'>
-        {seriesData.title}
-        {this.props.children || <ul>{ChapterList}</ul>}
-      </div>
+    let classes = cx(
+      'series__wrapper',
+      this.props.renderAs || (this.props.children ? 'breadcrumb' : 'main')
+    );
+
+    return React.createElement(wrapperElement, {className: classes},
+      <h1>{TitleElement}</h1>,
+      this.props.children || <ul className='chapter-list'>{ChapterList}</ul>
     );
   }
 }

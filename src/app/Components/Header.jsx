@@ -5,7 +5,7 @@ import _               from 'lodash';
 
 import DataStore from '../DataStore';
 
-class Chapter extends React.Component {
+class Header extends React.Component {
 
   static getStores () {
     return [DataStore];
@@ -26,12 +26,17 @@ class Chapter extends React.Component {
     });
 
     return (
-      <div className='home__wrapper'>
-        <h1>Webcomics by Lonely Robot</h1>
-        <ul>{SeriesList}</ul>
+      <div className='header__wrapper'>
+        <Link to='/' className='imprint'>
+          <img src='/assets/images/lrs-logo-horizontal.png' />
+          <p>Comics</p>
+        </Link>
+        <nav>
+          <ul>{SeriesList}</ul>
+        </nav>
       </div>
     );
   }
 }
 
-export default connectToStores(Chapter);
+export default connectToStores(Header);

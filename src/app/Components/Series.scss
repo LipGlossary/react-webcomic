@@ -1,0 +1,45 @@
+.series__wrapper {
+
+  &.main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10vh 10vw;
+
+    .chapter-list {
+      display: flex;
+      margin-top: -$index-gutters;
+      margin-left: -$index-gutters;
+    }
+  }
+
+  &.breadcrumb {
+
+    h1 {
+      background-color: rgba($grey, 0.1);
+      padding: 1em;
+      position: absolute;
+      text-align: left;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+
+  &.footer,
+  &.index {
+    display: flex;
+    margin-left: -$footer-gutters;
+
+    & > * {
+      margin-left: $footer-gutters;
+    }
+
+    h1 {
+      @extend %divider-after;
+    }
+  }
+
+  a {
+    @extend %link;
+  }
+}

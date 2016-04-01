@@ -2,6 +2,7 @@ import React           from 'react';
 import {Link}          from 'react-router';
 import connectToStores from 'alt/utils/connectToStores';
 import _               from 'lodash';
+import cx              from 'classnames';
 
 import DataStore from '../DataStore';
 import Page      from './Page';
@@ -26,6 +27,7 @@ class Chapter extends React.Component {
     let seriesData = _.find(this.props.projects, {slug: series});
     let chapterData = this.props.data || _.find(seriesData.chapters, {chapter: parseInt(chapter, 10)});
     let pagesData = chapterData.pages;
+    let renderAs = this.props.renderAs || (this.props.children ? 'breadcrumb' : 'main');
     // let slug = this.props.slug || chapterData.slug;
 
     let PageList = _.map(pagesData, (page, index) => {
@@ -36,29 +38,45 @@ class Chapter extends React.Component {
           key={index}
           page={page.page}
           params={params}
-          renderAs='index'
+          renderAs={this.props.renderAs || 'index'}
           series={this.props.series}
           slug={page.slug}
         />
       );
     });
 
-    if (this.props.renderAs === 'index') {
-      return (
-        <li className='chapter__wrapper red-box'>
-          <Link to={`/${series}/${chapter}`}>
-            {chapterData.title}
-          </Link>
-          <ul>{PageList}</ul>
-        </li>
+    let wrapperElement = 'div';
+    let Thumbnail;
+    let TitleElement = chapterData.title;
+
+    if (renderAs === 'index' || renderAs === 'main') {
+      let link = `/${series}/${chapter}`;
+
+      if (renderAs === 'main') {
+        link += `/${pagesData[0].page}`;
+      }
+
+      Thumbnail = (
+        <Link to={link} className='image'>
+          <img src={`https://cosmicjs.com/uploads/${_.first(pagesData).asset}`} />
+        </Link>
       );
     }
 
-    return (
-      <div className='chapter__wrapper blue-box'>
-        {chapterData.title}
-        {this.props.children || <ul>{PageList}</ul>}
-      </div>
+    if (this.props.renderAs || this.props.children) {
+      TitleElement = <Link to={`/${series}/${chapter}`}>{TitleElement}</Link>;
+    }
+
+    if (this.props.renderAs) {
+      wrapperElement = 'li';
+    }
+
+    let classes = cx('chapter__wrapper', renderAs);
+
+    return React.createElement(wrapperElement, {className: classes},
+      <h2>{TitleElement}</h2>,
+      Thumbnail,
+      this.props.children || <ul className='pages-list'>{PageList}</ul>
     );
   }
 }

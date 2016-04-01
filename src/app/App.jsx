@@ -2,7 +2,9 @@ import React           from 'react';
 import DataActions     from './DataActions';
 import CosmicService   from './services/CosmicService';
 
-import Home from './Components/Home';
+import Header from './Components/Header';
+import Home   from './Components/Home';
+import Footer from './Components/Footer';
 
 export default React.createClass({
 
@@ -17,8 +19,15 @@ export default React.createClass({
   render () {
     return (
       <div className='app__wrapper'>
-        {this.props.children}
-        <Home />
+        <header>
+          <Header />
+        </header>
+        <main>
+          {this.props.children || <Home /> }
+        </main>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     );
   }

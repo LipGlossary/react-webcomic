@@ -3,9 +3,10 @@ import {Link}          from 'react-router';
 import connectToStores from 'alt/utils/connectToStores';
 import _               from 'lodash';
 
-import DataStore from '../DataStore';
+import DataStore from '..//DataStore';
+import Series    from './Series';
 
-class Chapter extends React.Component {
+class Footer extends React.Component {
 
   static getStores () {
     return [DataStore];
@@ -19,19 +20,23 @@ class Chapter extends React.Component {
 
     let SeriesList = _.map(this.props.projects, (series, index) => {
       return (
-        <li key={index}>
-          <Link to={`/${series.slug}`}>{series.title}</Link>
-        </li>
+        <Series
+          data={series}
+          key={index}
+          renderAs='footer'
+          series={series.slug}
+          slug={series.slug}
+        />
       );
     });
 
     return (
-      <div className='home__wrapper'>
-        <h1>Webcomics by Lonely Robot</h1>
+      <div className='footer__wrapper'>
+        <p><Link to='/'>home</Link></p>
         <ul>{SeriesList}</ul>
       </div>
     );
   }
 }
 
-export default connectToStores(Chapter);
+export default connectToStores(Footer);
