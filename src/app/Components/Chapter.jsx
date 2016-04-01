@@ -46,17 +46,28 @@ class Chapter extends React.Component {
 
     let wrapperElement = 'div';
     let Thumbnail;
+    let TitleElement = chapterData.title;
 
     if (this.props.renderAs === 'index' || !this.props.renderAs) {
+      let link = `/${series}/${chapter}`;
+
+      if (!this.props.renderAs) {
+        link += `/${pagesData[0].page}`;
+      }
+
       Thumbnail = (
-        <Link to={`/${series}/${chapter}`} className='thumbnail'>
+        <Link to={link} className='image'>
           <img src={`https://cosmicjs.com/uploads/${_.first(pagesData).asset}`} />
         </Link>
       );
     }
 
-    if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
-      wrapperElement = 'li';
+    if (this.props.renderAs || this.props.children) {
+      TitleElement = <Link to={`/${series}/${chapter}`}>{TitleElement}</Link>;
+
+      if (this.props.renderAs === 'index' || this.props.renderAs === 'footer') {
+        wrapperElement = 'li';
+      }
     }
 
     let classes = cx(
@@ -65,9 +76,7 @@ class Chapter extends React.Component {
     );
 
     return React.createElement(wrapperElement, {className: classes},
-      <h2>
-        <Link to={`/${series}/${chapter}`}>{chapterData.title}</Link>
-      </h2>,
+      <h2>{TitleElement}</h2>,
       Thumbnail,
       this.props.children || <ul className='pages-list'>{PageList}</ul>
     );

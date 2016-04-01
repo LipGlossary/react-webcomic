@@ -13,6 +13,14 @@
     }
   }
 
+  &.breadcrumb {
+
+    h1 {
+      position: absolute;
+      padding: 1em;
+    }
+  }
+
   &.footer,
   &.index {
     margin-left: -$footer-gutters;
@@ -24,5 +32,9 @@
     h1 {
       @extend %divider-after;
     }
+  }
+
+  a {
+    @extend %link;
   }
 }
