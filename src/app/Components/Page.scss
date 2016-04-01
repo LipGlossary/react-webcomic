@@ -14,22 +14,53 @@
     display: flex;
     flex-direction: column;
     padding: 10vh 5vw;
-
   }
 
   .viewer {
-    padding: 1em;
     background-color: rgba($white, 0.7);
+    padding: 1em;
+    position: relative;
 
-    a:after {
-      display: none;
+    a {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      &:after {
+        display: none;
+      }
     }
   }
 
   .nav {
+    bottom: 0;
     display: flex;
-    justify-content: space-between;
-    width: inherit;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    li {
+      flex-grow: 1;
+      position: relative;
+    }
   }
 
+  .prev {
+    width: 30%;
+
+    &:hover {
+      box-shadow: -0.5em 0 0 0 $header-link-color-hover;
+    }
+  }
+
+  .next {
+    width: 70%;
+
+    &:hover {
+      box-shadow: 0.5em 0 0 0 $header-link-color-hover;
+    }
+  }
 }

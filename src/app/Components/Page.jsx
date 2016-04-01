@@ -46,40 +46,40 @@ class Page extends React.Component {
 
     let NextElement, PrevElement;
     let chapterPath = join('/', series, `${chapter}`);
-    let ImageElement = <img src={`https://cosmicjs.com/uploads/${pageData.asset}`} />;
 
     if (page - 1 >= 0) {
       let prevPage = Math.max(page - 1, 0);
       PrevElement = (
-        <Link to={join(chapterPath, `${prevPage}`)} title={`page ${prevPage}`}>
-          Previous
-        </Link>
+        <li className='prev'>
+          <Link
+            to={join(chapterPath, `${prevPage}`)}
+            title={`Previous: page ${prevPage}`}
+          />
+        </li>
       );
     }
 
     if (page + 1 < chapterData.pages.length) {
       let nextPage = Math.min(page + 1, chapterData.pages.length - 1);
-      let nextPath = join(chapterPath, `${nextPage}`);
-
-      NextElement = <Link to={nextPath} title={`page ${nextPage}`}>Next</Link>;
-
-      ImageElement = <Link to={nextPath} className='image'>{ImageElement}</Link>;
+      NextElement = (
+        <li className='next'>
+          <Link
+            to={join(chapterPath, `${nextPage}`)}
+            title={`Next: page ${nextPage}`}
+          />
+        </li>
+      );
     }
-
-    let NavElement = (
-      <ul className='nav'>
-        <li>{PrevElement}</li>
-        <li>{NextElement}</li>
-      </ul>
-    );
 
     return (
       <div className={classes}>
         <h3>{pageData.title}</h3>
         <div className='viewer'>
-          {NavElement}
-          {ImageElement}
-          {NavElement}
+          <img src={`https://cosmicjs.com/uploads/${pageData.asset}`} />
+          <ul className='nav'>
+            {PrevElement}
+            {NextElement}
+          </ul>
         </div>
       </div>
     );
