@@ -16,11 +16,12 @@
   &.breadcrumb {
 
     h1 {
+      background-color: rgba($grey, 0.1);
       padding: 1em;
       position: absolute;
-      z-index: 1;
+      text-align: left;
       width: 100%;
-      background-color: rgba($grey, 0.1);
+      z-index: 1;
     }
   }
 
